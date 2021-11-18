@@ -1,0 +1,20 @@
+{
+  "name": "gratibox-backend",
+  "version": "1.0.0",
+  "description": "API for a subscription meditation shop",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo Bittencourt Otero",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.2",
+    "pg": "^8.7.1"
+  }
+}
