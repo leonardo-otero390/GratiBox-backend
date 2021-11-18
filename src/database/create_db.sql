@@ -1,4 +1,4 @@
-CREATE TABLE "public.users" (
+CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"email" TEXT NOT NULL UNIQUE,
@@ -8,9 +8,7 @@ CREATE TABLE "public.users" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.plans" (
+CREATE TABLE "plans" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL UNIQUE,
 	CONSTRAINT "plans_pk" PRIMARY KEY ("id")
@@ -18,9 +16,7 @@ CREATE TABLE "public.plans" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.user_subscriptions" (
+CREATE TABLE "user_subscriptions" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"plan_id" integer NOT NULL,
@@ -33,9 +29,7 @@ CREATE TABLE "public.user_subscriptions" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.products" (
+CREATE TABLE "products" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL UNIQUE,
 	CONSTRAINT "products_pk" PRIMARY KEY ("id")
@@ -43,9 +37,7 @@ CREATE TABLE "public.products" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.subscription_products" (
+CREATE TABLE "subscription_products" (
 	"id" serial NOT NULL,
 	"product_id" integer NOT NULL,
 	"subscription_id" integer NOT NULL,
@@ -54,9 +46,7 @@ CREATE TABLE "public.subscription_products" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.states" (
+CREATE TABLE "states" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
 	CONSTRAINT "states_pk" PRIMARY KEY ("id")
@@ -64,9 +54,7 @@ CREATE TABLE "public.states" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "public.ship_infos" (
+CREATE TABLE "ship_infos" (
 	"id" serial NOT NULL,
 	"ZIP_code" varchar(8) NOT NULL,
 	"address" varchar(255) NOT NULL,
@@ -77,24 +65,9 @@ CREATE TABLE "public.ship_infos" (
   OIDS=FALSE
 );
 
-
-
-
-
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk1" FOREIGN KEY ("plan_id") REFERENCES "plans"("id");
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk2" FOREIGN KEY ("ship_info_id") REFERENCES "ship_infos"("id");
-
-
 ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk0" FOREIGN KEY ("product_id") REFERENCES "products"("id");
 ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk1" FOREIGN KEY ("subscription_id") REFERENCES "user_subscriptions"("id");
-
-
 ALTER TABLE "ship_infos" ADD CONSTRAINT "ship_infos_fk0" FOREIGN KEY ("state_id") REFERENCES "states"("id");
-
-
-
-
-
-
-
