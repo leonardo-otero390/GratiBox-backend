@@ -1,6 +1,6 @@
 import { Router } from "express";
 import signIn from "./controllers/sessions.js";
-import { signUp } from "./controllers/users.js";
+import signUp from "./controllers/users.js";
 
 const routes = Router();
 

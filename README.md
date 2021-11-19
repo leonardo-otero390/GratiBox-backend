@@ -16,8 +16,10 @@ send body request like this
 ```
 * it returns status <strong style="color:green;">201</strong> for success
 
-* it returns status <strong style="color:red;">400</strong> for any issue</li>
-    
+* it returns status <strong style="color:red;">409</strong> for email in use</li>
+
+* it returns status <strong style="color:red;">400</strong> for any other issue</li>
+
 </details>
 
 <details>

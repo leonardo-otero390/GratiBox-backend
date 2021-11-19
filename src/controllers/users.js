@@ -2,7 +2,7 @@ import connection from '../database/connection.js';
 import { newUserSchema } from './validations/schemas.js';
 import bcrypt from 'bcrypt';
 
-async function signUp(req, res) {
+export default async function signUp(req, res) {
     const { name, email, password } = req.body;
 
     const validation = newUserSchema.validate({
@@ -15,7 +15,7 @@ async function signUp(req, res) {
 		res.sendStatus(400);
 		return;
 	}
-
+	if (await userAlredyExists(email)) return res.sendStatus(409);
     try {
 		const encryptedPassword = bcrypt.hashSync(password, 10);
 
@@ -28,8 +28,4 @@ async function signUp(req, res) {
 		console.log(error.message);
 		res.send(500);
 	}
-}
-
-export {
-    signUp
 }
