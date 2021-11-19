@@ -6,6 +6,12 @@ const newUserSchema = joi.object({
 	password: joi.string().required(),
 });
 
+const newSessionSchema = joi.object({
+	email: joi.string().email().required(),
+	password: joi.string().required(),
+});
+
 export {
-    newUserSchema
+    newUserSchema,
+    newSessionSchema
 }

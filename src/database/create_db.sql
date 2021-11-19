@@ -8,6 +8,8 @@ CREATE TABLE "users" (
   OIDS=FALSE
 );
 
+
+
 CREATE TABLE "plans" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL UNIQUE,
@@ -15,6 +17,8 @@ CREATE TABLE "plans" (
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE "user_subscriptions" (
 	"id" serial NOT NULL,
@@ -29,6 +33,8 @@ CREATE TABLE "user_subscriptions" (
   OIDS=FALSE
 );
 
+
+
 CREATE TABLE "products" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL UNIQUE,
@@ -36,6 +42,8 @@ CREATE TABLE "products" (
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE "subscription_products" (
 	"id" serial NOT NULL,
@@ -46,13 +54,18 @@ CREATE TABLE "subscription_products" (
   OIDS=FALSE
 );
 
-CREATE TABLE "states" (
+
+
+CREATE TABLE "sessions" (
 	"id" serial NOT NULL,
-	"name" varchar(255) NOT NULL,
-	CONSTRAINT "states_pk" PRIMARY KEY ("id")
+	"token" varchar(36) NOT NULL,
+	"user_id" integer NOT NULL,
+	CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
+
+
 
 CREATE TABLE "ship_infos" (
 	"id" serial NOT NULL,
@@ -65,9 +78,37 @@ CREATE TABLE "ship_infos" (
   OIDS=FALSE
 );
 
+
+
+CREATE TABLE "states" (
+	"id" serial NOT NULL,
+	"name" varchar(255) NOT NULL,
+	CONSTRAINT "states_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+
+
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk1" FOREIGN KEY ("plan_id") REFERENCES "plans"("id");
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk2" FOREIGN KEY ("ship_info_id") REFERENCES "ship_infos"("id");
+
+
 ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk0" FOREIGN KEY ("product_id") REFERENCES "products"("id");
 ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk1" FOREIGN KEY ("subscription_id") REFERENCES "user_subscriptions"("id");
+
+ALTER TABLE "sessions" ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+
 ALTER TABLE "ship_infos" ADD CONSTRAINT "ship_infos_fk0" FOREIGN KEY ("state_id") REFERENCES "states"("id");
+
+
+
+
+
+
+
+
+
