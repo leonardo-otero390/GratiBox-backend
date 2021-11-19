@@ -3,22 +3,20 @@
     <summary>
         <strong style="color:green;">POST</strong> /sign-up
     </summary>
-send body request like this
+send body request like this:
 
 ```json
- [ 
     {
         "name":"joe",
         "email":"j@j.com",
         "password":"***"
     }
- ]
 ```
 * it returns status <strong style="color:green;">201</strong> for success
 
-* it returns status <strong style="color:red;">409</strong> for email in use</li>
+* it returns status <strong style="color:purple;">409</strong> for email in use</li>
 
-* it returns status <strong style="color:red;">400</strong> for any other issue</li>
+* it returns status <strong style="color:purple;">400</strong> for any other issue</li>
 
 </details>
 
@@ -29,12 +27,10 @@ send body request like this
 send body request like this
 
 ```json
- [ 
     {
         "email":"j@j.com",
         "password":"***"
     }
- ]
 ```
 * it returns status <strong style="color:green;">201</strong> for success with an object array like this:
 ```json
@@ -47,8 +43,37 @@ send body request like this
   }
 }
 ```
-* it returns status <strong style="color:red;">401</strong> for wrong password/email</li>
+* it returns status <strong style="color:purple;">401</strong> for wrong password/email</li>
 
-* it returns status <strong style="color:red;">400</strong> for any other error</li>
+* it returns status <strong style="color:purple;">400</strong> for any other error</li>
     
+</details>
+
+<details>
+    <summary>
+        <strong style="color:green;">POST</strong> /subscription
+    </summary>
+send body request like this:
+
+```json
+    {
+        "user":1,
+        "plan":1,
+        "name":"joe smith bros",
+        "shipDate":1,
+        "products":[1,2]
+        
+    }
+```
+and the token in headers, to authorization like this:
+```json
+headers: {
+			"Authorization": "Bearer b017157b-faef-442b-95cb-8f4c12a2d9e0",
+		}
+```
+* it returns status <strong style="color:green;">201</strong> for success
+* it returns status <strong style="color:purple;">400</strong> for missing, invalid token or bad request
+* it returns status <strong style="color:purple;">404</strong> for no session token
+* it returns status <strong style="color:purple;">422</strong> for empty token
+
 </details>

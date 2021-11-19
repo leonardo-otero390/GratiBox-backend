@@ -11,7 +11,16 @@ const newSessionSchema = joi.object({
 	password: joi.string().required(),
 });
 
+const newSubscriptionSchema = joi.object({
+	user: joi.number().required(),
+	plan: joi.number().required(),
+	name: joi.string().min(3).required(),
+	shipDate: joi.number().required(),
+	products: joi.array().min(1).required(),
+})
+
 export {
     newUserSchema,
-    newSessionSchema
+    newSessionSchema,
+	newSubscriptionSchema
 }

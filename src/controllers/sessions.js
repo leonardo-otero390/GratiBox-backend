@@ -12,9 +12,7 @@ export default async function singIn(req, res) {
     password,
   });
 
-  if (validation.error) {
-    return res.sendStatus(400);
-  }
+  if (validation.error) return res.sendStatus(400);
 
   const user = await userAlredyExists(email);
 
@@ -43,6 +41,6 @@ export default async function singIn(req, res) {
     res.status(201).send({ token, user });
   } catch (error) {
     console.log(error.message);
-    res.send(500);
+    res.sendStatus(500);
   }
 }

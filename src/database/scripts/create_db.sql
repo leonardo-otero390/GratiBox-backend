@@ -22,12 +22,12 @@ CREATE TABLE "plans" (
 
 CREATE TABLE "user_subscriptions" (
 	"id" serial NOT NULL,
-	"user_id" integer NOT NULL,
+	"user_id" integer NOT NULL UNIQUE,
 	"plan_id" integer NOT NULL,
 	"sign_date" DATE NOT NULL,
 	"full_name" varchar(255) NOT NULL,
-	"ship_date" varchar(255) NOT NULL,
-	"ship_info_id" integer NOT NULL,
+	"ship_date_id" integer NOT NULL,
+	"ship_info_id" integer,
 	CONSTRAINT "user_subscriptions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -90,11 +90,22 @@ CREATE TABLE "states" (
 
 
 
+CREATE TABLE "ship_dates" (
+	"id" serial NOT NULL,
+	"date" varchar(255) NOT NULL,
+	CONSTRAINT "ship_dates_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 
 
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk1" FOREIGN KEY ("plan_id") REFERENCES "plans"("id");
-ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk2" FOREIGN KEY ("ship_info_id") REFERENCES "ship_infos"("id");
+ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk2" FOREIGN KEY ("ship_date_id") REFERENCES "ship_dates"("id");
+ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_fk3" FOREIGN KEY ("ship_info_id") REFERENCES "ship_infos"("id");
 
 
 ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk0" FOREIGN KEY ("product_id") REFERENCES "products"("id");
@@ -103,6 +114,8 @@ ALTER TABLE "subscription_products" ADD CONSTRAINT "subscription_products_fk1" F
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 
 ALTER TABLE "ship_infos" ADD CONSTRAINT "ship_infos_fk0" FOREIGN KEY ("state_id") REFERENCES "states"("id");
+
+
 
 
 
