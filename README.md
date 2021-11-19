@@ -1,7 +1,7 @@
 # Api documentation
 <details>
     <summary>
-        <strong style="color:green;">POST</strong> /users
+        <strong style="color:green;">POST</strong> /sign-up
     </summary>
 send body request like this
 
@@ -22,7 +22,7 @@ send body request like this
 
 <details>
     <summary>
-        <strong style="color:green;">POST</strong> /sessions
+        <strong style="color:green;">POST</strong> /sign-in
     </summary>
 send body request like this
 

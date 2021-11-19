@@ -2,7 +2,7 @@ import connection from '../database/connection.js';
 import { newUserSchema } from './validations/schemas.js';
 import bcrypt from 'bcrypt';
 
-async function postUser(req, res) {
+async function signUp(req, res) {
     const { name, email, password } = req.body;
 
     const validation = newUserSchema.validate({
@@ -31,5 +31,5 @@ async function postUser(req, res) {
 }
 
 export {
-    postUser
+    signUp
 }

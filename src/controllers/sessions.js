@@ -4,7 +4,7 @@ import { newSessionSchema } from "./validations/schemas.js";
 import { v4 as uuid } from "uuid";
 import bcrypt from 'bcrypt';
 
-export default async function postSession(req, res) {
+export default async function singIn(req, res) {
   const { email, password } = req.body;
 
   const validation = newSessionSchema.validate({
