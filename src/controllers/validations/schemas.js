@@ -12,11 +12,15 @@ const newSessionSchema = joi.object({
 });
 
 const newSubscriptionSchema = joi.object({
-	user: joi.number().required(),
-	plan: joi.number().required(),
+	userId: joi.number().required(),
+	planId: joi.number().required(),
 	name: joi.string().min(3).required(),
-	shipDate: joi.number().required(),
-	products: joi.array().min(1).required(),
+	shipDateId: joi.number().required(),
+	productsId: joi.array().min(1).required(),
+	ZIPCode: joi.string().length(8).required(),
+	address: joi.string().required(),
+	stateId: joi.number().required(),
+	city: joi.string().min(3).required(),
 })
 
 export {

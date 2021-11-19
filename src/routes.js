@@ -6,9 +6,6 @@ import validateToken from "./middlewares/tokenValidator.js";
 
 const routes = Router();
 
-routes.get("/health", (req, res) => {
-  res.send("Healthy");
-});
 routes.post("/sign-up", signUp);
 routes.post("/sign-in", signIn);
 routes.post("/subscription", validateToken, postUserSubscription);

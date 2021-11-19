@@ -56,13 +56,16 @@ send body request like this
 send body request like this:
 
 ```json
-    {
-        "user":1,
-        "plan":1,
+     {
+        "userId":1,
+        "planId":1,
         "name":"joe smith bros",
-        "shipDate":1,
-        "products":[1,2]
-        
+        "shipDateId":1,
+        "productsId":[1,2],
+        "ZIPCode":"1234567",
+        "address":"your address",
+        "stateId":1,
+        "city":"your city"
     }
 ```
 and the token in headers, to authorization like this:
