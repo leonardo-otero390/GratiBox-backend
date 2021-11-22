@@ -80,3 +80,20 @@ headers: {
 * it returns status <strong style="color:purple;">422</strong> for empty token
 
 </details>
+<details>
+    <summary>
+        <strong style="color:blue;">GET</strong> /subscription
+    </summary>
+send the token in headers, to authorization like this:
+
+```json
+headers: {
+			"Authorization": "Bearer b017157b-faef-442b-95cb-8f4c12a2d9e0",
+		}
+```
+* it returns status <strong style="color:green;">200</strong> for success
+* it returns status <strong style="color:purple;">400</strong> for missing or invalid token
+* it returns status <strong style="color:purple;">404</strong> for no session token
+* it returns status <strong style="color:purple;">422</strong> for empty token
+
+</details>
