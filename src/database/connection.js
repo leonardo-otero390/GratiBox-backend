@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'prod') {
     },
   };
 }
-
+console.log(process.env.NODE_ENV,process.env.DATABASE_URL);
 const pool = new Pool(config);
 
 export default pool;
