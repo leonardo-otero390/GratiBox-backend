@@ -11,7 +11,7 @@ let config = {
   database: process.env.DB_NAME,
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'prod') {
   config = {
     connection: process.env.DATABASE_URL,
     ssl: {
