@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === 'prod') {
 }
 console.log("NODE_ENV É",process.env.NODE_ENV);
 console.log("DATABASE É",process.env.DATABASE_URL);
+console.log("CONFIG É",config);
 const pool = new Pool(config);
 
 export default pool;
