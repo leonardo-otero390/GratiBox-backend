@@ -24,8 +24,8 @@ CREATE TABLE "user_subscriptions" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL UNIQUE,
 	"plan_id" integer NOT NULL,
-	"sign_date" DATE NOT NULL,
 	"full_name" varchar(255) NOT NULL,
+	"sign_date" DATE NOT NULL,
 	"ship_date_id" integer NOT NULL,
 	"ZIP_code" varchar(8) NOT NULL,
 	"address" varchar(255) NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE "sessions" (
 
 CREATE TABLE "states" (
 	"id" serial NOT NULL,
-	"name" varchar(255) NOT NULL,
+	"name" varchar(2) NOT NULL,
 	CONSTRAINT "states_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
