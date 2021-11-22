@@ -19,7 +19,7 @@ const newSubscriptionSchema = joi.object({
 	productsId: joi.array().min(1).required(),
 	ZIPCode: joi.string().length(8).required(),
 	address: joi.string().required(),
-	stateId: joi.number().required(),
+	state: joi.string().length(2).required(),
 	city: joi.string().min(3).required(),
 })
 

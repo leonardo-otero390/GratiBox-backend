@@ -10,7 +10,7 @@ export default async function postUserSubscription(req, res) {
     productsId,
     ZIPCode,
     address,
-    stateId,
+    state,
     city,
   } = req.body;
 
@@ -22,7 +22,7 @@ export default async function postUserSubscription(req, res) {
     productsId,
     ZIPCode,
     address,
-    stateId,
+    state,
     city,
   });
 
@@ -30,12 +30,43 @@ export default async function postUserSubscription(req, res) {
     console.log(validation.error);
     return res.sendStatus(400);
   }
-
+  let stateId;
+  let stateAlreadyExist = true;
+  try {
+    const request = await connection.query(
+      `SELECT id FROM states WHERE name =$1;`,
+      [state]
+    );
+    console.log(request);
+    if (request.rowCount) stateId = request.rows[0].id;
+    else stateAlreadyExist = false;
+  } catch (error) {
+    console.log(error.message);
+    return res.sendStatus(500);
+  }
+  if (!stateAlreadyExist) {
+    try {
+      await connection.query(`INSERT INTO states (name) VALUES ($1)`, [state]);
+    } catch (error) {
+      console.log(error.message);
+      return res.sendStatus(500);
+    }
+    try {
+      const request = await connection.query(
+        `SELECT id FROM states WHERE name =$1;`,
+        [state]
+      );
+      stateId = request.rows[0].id;
+    } catch (error) {
+      console.log(error.message);
+      return res.sendStatus(500);
+    }
+  }
   try {
     await connection.query(
       `INSERT INTO user_subscriptions 
         (user_id, plan_id, sign_date, full_name, ship_date_id, "ZIP_code", address, state_id, city) 
-        VALUES ($1, $2, NOW(), $3, $4, $5, $6, $7, $8)`,
+        VALUES ($1, $2, NOW(), $3, $4, $5, $6, $7, $8);`,
       [userId, planId, name, shipDateId, ZIPCode, address, stateId, city]
     );
   } catch (error) {

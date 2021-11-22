@@ -64,7 +64,7 @@ send body request like this:
         "productsId":[1,2],
         "ZIPCode":"1234567",
         "address":"your address",
-        "stateId":1,
+        "state":"YS",
         "city":"your city"
     }
 ```
